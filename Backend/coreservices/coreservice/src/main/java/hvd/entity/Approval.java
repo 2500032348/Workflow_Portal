@@ -1,0 +1,77 @@
+package hvd.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="workflow_approvals")
+public class Approval {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	Long id;
+	String decision;
+	String comments;
+	int approvalLevel;
+	LocalDateTime approvedAt;
+	@ManyToOne
+	@JoinColumn(name="workflow_id")
+	WorkFlow workflow;
+	@ManyToOne
+	@JoinColumn(name="approver_id")
+	Users approver;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getDecision() {
+		return decision;
+	}
+	public void setDecision(String decision) {
+		this.decision = decision;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	public int getApprovalLevel() {
+		return approvalLevel;
+	}
+	public void setApprovalLevel(int approvalLevel) {
+		this.approvalLevel = approvalLevel;
+	}
+	public LocalDateTime getApprovedAt() {
+		return approvedAt;
+	}
+	public void setApprovedAt(LocalDateTime approvedAt) {
+		this.approvedAt = approvedAt;
+	}
+	public WorkFlow getWorkflow() {
+		return workflow;
+	}
+	public void setWorkflow(WorkFlow workflow) {
+		this.workflow = workflow;
+	}
+	public Users getApprover() {
+		return approver;
+	}
+	public void setApprover(Users approver) {
+		this.approver = approver;
+	}
+	@Override
+	public String toString() {
+		return "Approval [id=" + id + ", decision=" + decision + ", comments=" + comments + ", approvalLevel="
+				+ approvalLevel + ", approvedAt=" + approvedAt + ", workflow=" + workflow + ", approver=" + approver
+				+ "]";
+	}
+}

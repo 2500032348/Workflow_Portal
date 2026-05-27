@@ -1,0 +1,28 @@
+package hvd.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import hvd.entity.Users;
+import hvd.service.UsersService;
+
+@RestController
+@RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:5173")
+public class UsersController {
+
+    @Autowired
+    UsersService US;
+
+    @PostMapping("/signup")
+    public Object signup(@RequestBody Users U) {
+        return US.signup(U);
+    }
+
+    @PostMapping("/signin")
+    public Object signin(@RequestBody Map<String, Object> data) {
+        return US.signin(data);
+    }
+}

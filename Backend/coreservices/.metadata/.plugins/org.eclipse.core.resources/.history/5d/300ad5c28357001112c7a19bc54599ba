@@ -1,0 +1,24 @@
+package hvd.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/approval")
+@CrossOrigin(origins = "http://localhost:5173")
+public class ApprovalController {
+
+    @GetMapping("/pending")
+    public Object pending() {
+        return "pending approvals";
+    }
+
+    @PostMapping("/decide/{id}")
+    public Object decide(@PathVariable int id) {
+        return "decision for " + id;
+    }
+
+    @GetMapping("/history")
+    public Object history() {
+        return "approval history";
+    }
+}
