@@ -1,0 +1,5 @@
+package hvd.service;
+
+public class WorkflowLogService {
+
+}

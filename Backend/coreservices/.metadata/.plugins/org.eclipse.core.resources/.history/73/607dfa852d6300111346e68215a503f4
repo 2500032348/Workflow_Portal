@@ -1,0 +1,32 @@
+package hvd.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import hvd.entity.WorkFlow;
+import hvd.service.WorkflowService;
+
+@RestController
+@RequestMapping("/workflow")
+public class WorkflowController {
+
+    @Autowired
+    WorkflowService WS;
+
+    @PostMapping("/submitleave")
+    public Object submitLeave(@RequestBody WorkFlow wf)
+    {
+        return WS.submitLeave(wf);
+    }
+
+    @GetMapping("/all")
+    public Object getAllWorkflows()
+    {
+        return WS.getAllWorkflows();
+    }
+    
+    @GetMapping("/pending")
+    public Object getPendingWorkflows() {
+        return WS.getPendingWorkflows();
+    }
+}

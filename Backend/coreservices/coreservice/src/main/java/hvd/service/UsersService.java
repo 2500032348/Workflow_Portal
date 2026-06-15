@@ -1,5 +1,7 @@
 package hvd.service;
 
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 import hvd.entity.PortalModules;
 import hvd.entity.SystemRoles;
 import hvd.entity.Users;
+//import hvd.repository.PortalModulesRepository;
+//import hvd.repository.RoleAssignmentsRepository;
 import hvd.repository.RoleRepository;
 import hvd.repository.UsersRepository;
 
@@ -28,6 +32,12 @@ public class UsersService {
 	
 	@Autowired
 	RoleRepository RR;
+	
+//	@Autowired
+//	PortalModulesRepository PMR;
+//
+//	@Autowired
+//	RoleAssignmentsRepository RAR;
 	
 	public Object signup(Users U)
 	  {
@@ -65,8 +75,17 @@ public class UsersService {
 			Object role = UR.validatecredentials(data.get("username").toString(),
 					data.get("password").toString());    //validate user name and password
 			if(role!=null) {
-				response.put("code",200);
-				response.put("jwt",JWT.generateJWT(data.get("username"),role));
+			    response.put("code",200);
+
+			    response.put(
+			        "jwt",
+			        JWT.generateJWT(
+			            data.get("username"),
+			            role
+			        )
+			    );
+
+			    response.put("role", role); // ADD THIS LINE
 			}
 			else {
 				response.put("code", 404);

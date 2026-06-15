@@ -41,7 +41,7 @@ async def profile(Token: str = Header(...)):
            headers = {"Token" : Token}
         )
     return response.json() 
-
+   
 @router.get("/getallusers/{PAGE}/{SIZE}")
 async def profile(PAGE: int, SIZE: int, Token: str = Header(...)):
     async with httpx.AsyncClient() as client:

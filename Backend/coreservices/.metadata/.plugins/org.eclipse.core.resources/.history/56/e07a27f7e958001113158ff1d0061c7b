@@ -1,5 +1,0 @@
-package hvd.dto;
-
-public class WorkFlowRequest {
-
-}

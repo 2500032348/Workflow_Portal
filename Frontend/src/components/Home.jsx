@@ -5,13 +5,19 @@ import ProgressBar from './ProgressBar';
 import Profile from './Profile';
 import UserManager from './UserManager';
 
+import Dashboard from './Dashboard';
+import SubmitLeave from './SubmitLeave';
+import PendingApprovals from './PendingApprovals';
+import ApprovalHistory from './ApprovalHistory';
+import WorkflowDetails from './WorkflowDetails';
+
 const Home = () => {
 
     const [fullname, setFullname] = useState("");
     const [isProgress, setIsProgress] = useState(false);
     const [menuList, setMenuList] = useState([]);
     const [activeComponent, setActiveComponent] = useState(null);
-    const [activeMenu, setActiveMenu] = useState(0);
+    const [activeMenu, setActiveMenu] = useState(1);
 
     useEffect(() => {
 
@@ -43,14 +49,15 @@ const Home = () => {
             return;
 
         setFullname(res.fullname);
-
         setMenuList(res.menulist || []);
+
+        // Load Dashboard by default
+        setActiveComponent(<Dashboard />);
     }
 
     function logout() {
 
         localStorage.clear();
-
         window.location.replace("/");
     }
 
@@ -60,15 +67,15 @@ const Home = () => {
 
         const componentMap = {
 
-            1: <h2>Dashboard Module</h2>,
+            1: <Dashboard />,
 
-            2: <h2>Submit Leave Module</h2>,
+            2: <SubmitLeave />,
 
-            3: <h2>Pending Approvals Module</h2>,
+            3: <PendingApprovals />,
 
-            4: <h2>Approval History Module</h2>,
+            4: <ApprovalHistory />,
 
-            5: <h2>Workflow Details Module</h2>,
+            5: <WorkflowDetails />,
 
             6: <UserManager logout={logout} />,
 
@@ -165,34 +172,14 @@ const Home = () => {
 
                 <div className='home-content'>
 
-                    {activeComponent ||
-
-                        <div className='welcome-box'>
-
-                            <img
-                                src="/mainlogo.png"
-                                alt=''
-                                className='welcome-logo'
-                            />
-
-                            <h1>
-                                Welcome to Workflow Portal
-                            </h1>
-
-                            <p>
-                                Manage approvals, leaves, workflow and users easily.
-                            </p>
-
-                        </div>
-
-                    }
+                    {activeComponent || <Dashboard />}
 
                 </div>
 
             </div>
 
             <div className='home-footer'>
-                Copyright © 2026. All rights reserved.
+                Copyright © 2026. All rights reserved.2500032348. S MD Humera Banu
             </div>
 
             <ProgressBar isProgress={isProgress} />

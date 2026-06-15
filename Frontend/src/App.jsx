@@ -149,19 +149,24 @@ const App = () => {
         );
     }
 
-    function signinResponseHandler(res) {
+   function signinResponseHandler(res) {
 
-        setIsProgress(false);
+    setIsProgress(false);
 
-        if (res.code !== 200) {
-            alert(res.message);
-            return;
-        }
-
-        localStorage.setItem("token", res.jwt);
-
-        window.location.replace("/home");
+    if (res.code !== 200) {
+        alert(res.message);
+        return;
     }
+
+    localStorage.setItem("token", res.jwt);
+
+    localStorage.setItem(
+        "role",
+        res.role
+    );
+
+    window.location.replace("/home");
+}
 
     function signupResponseHandler(res) {
 

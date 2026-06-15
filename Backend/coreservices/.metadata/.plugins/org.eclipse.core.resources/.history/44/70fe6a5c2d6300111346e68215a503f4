@@ -1,0 +1,110 @@
+package hvd.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="workflow_requests")
+public class WorkFlow {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    Long workflowid;
+
+    String leaveType;
+    String fromDate;
+    String toDate;
+    String reason;
+    String submittedBy;
+    String submittedByRole;
+    String status = "Pending";
+
+    LocalDateTime submittedDate;
+
+	public int getWorkflowid() {
+		return workflowid;
+	}
+
+	public void setWorkflowid(int workflowid) {
+		this.workflowid = workflowid;
+	}
+
+	public String getLeaveType() {
+		return leaveType;
+	}
+
+	public void setLeaveType(String leaveType) {
+		this.leaveType = leaveType;
+	}
+
+	public String getFromDate() {
+		return fromDate;
+	}
+
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public String getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getSubmittedBy() {
+		return submittedBy;
+	}
+
+	public void setSubmittedBy(String submittedBy) {
+		this.submittedBy = submittedBy;
+	}
+
+	public String getSubmittedByRole() {
+		return submittedByRole;
+	}
+
+	public void setSubmittedByRole(String submittedByRole) {
+		this.submittedByRole = submittedByRole;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public LocalDateTime getSubmittedDate() {
+		return submittedDate;
+	}
+
+	public void setSubmittedDate(LocalDateTime submittedDate) {
+		this.submittedDate = submittedDate;
+	}
+
+	@Override
+	public String toString() {
+		return "WorkFlow [workflowid=" + workflowid + ", leaveType=" + leaveType + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + ", reason=" + reason + ", submittedBy=" + submittedBy + ", submittedByRole="
+				+ submittedByRole + ", status=" + status + ", submittedDate=" + submittedDate + "]";
+	}
+
+
+    
+}

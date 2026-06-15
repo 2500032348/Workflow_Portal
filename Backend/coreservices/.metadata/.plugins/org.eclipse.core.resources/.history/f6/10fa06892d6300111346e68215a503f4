@@ -1,0 +1,51 @@
+package hvd.service;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hvd.entity.WorkFlow;
+import hvd.repository.WorkflowRepository;
+
+@Service
+public class WorkflowService {
+
+    @Autowired
+    WorkflowRepository WR;
+
+    public Object submitLeave(WorkFlow wf)
+    {
+        Map<String,Object> response = new HashMap<>();
+
+        try
+        {
+            wf.setStatus("Pending");
+            wf.setSubmittedDate(LocalDateTime.now());
+
+            WR.save(wf);
+
+            response.put("code",200);
+            response.put("message","Leave submitted successfully");
+        }
+        catch(Exception e)
+        {
+            response.put("code",500);
+            response.put("message",e.getMessage());
+        }
+
+        return response;
+    }
+
+    public Object getAllWorkflows()
+    {
+        Map<String,Object> response = new HashMap<>();
+
+        response.put("code",200);
+        response.put("data",WR.findAll());
+
+        return response;
+    }
+}

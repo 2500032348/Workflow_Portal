@@ -1,0 +1,5 @@
+package hvd.entity;
+
+public class Review {
+
+}

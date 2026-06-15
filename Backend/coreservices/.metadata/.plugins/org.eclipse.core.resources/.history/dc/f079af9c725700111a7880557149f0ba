@@ -1,5 +1,0 @@
-package hvd.repository;
-
-public interface UsersRepository {
-
-}

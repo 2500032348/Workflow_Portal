@@ -14,6 +14,10 @@ app.add_middleware(
 )
 
 app.include_router(AuthenticationRouter)
+app.include_router(WorkflowRouter)
+app.include_router(ApprovalRouter)
+app.include_router(ReviewRouter)
+app.include_router(WorkflowLogRouter)
 
 @app.get("/")
 def home():
